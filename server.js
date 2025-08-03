@@ -4,6 +4,7 @@ const connectDB = require("./db");
 const cors = require("cors")
 const orderRoutes = require("./router/myorder")
 const foodRoutes = require("./router/mloRoutes")
+const path = require("path")
 
 const app = express();
 
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 8001;
 
 app.use("/api/orders", orderRoutes);
 app.use("/api/mlo", foodRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 app.get("/", (req, res) => {
     res.send("Hello Higal, you are doing well?")
